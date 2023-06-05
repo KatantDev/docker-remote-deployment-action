@@ -3,7 +3,7 @@ set -eu
 
 execute_ssh(){
   echo "Execute Over SSH: $@"
-  ssh -q -t -i "$HOME/.ssh/id_rsa" \
+  ssh -q -t -i "$HOME/.ssh/id_ed25519" \
       -o UserKnownHostsFile=/dev/null \
       -o StrictHostKeyChecking=no "$INPUT_REMOTE_DOCKER_HOST" -p "$INPUT_SSH_PORT" "$@"
 }
@@ -49,13 +49,13 @@ echo "Registering SSH keys..."
 # register the private key with the agent.
 mkdir -p ~/.ssh
 ls ~/.ssh
-printf '%s\n' "$INPUT_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-chmod 600 ~/.ssh/id_rsa
-printf '%s\n' "$INPUT_SSH_PUBLIC_KEY" > ~/.ssh/id_rsa.pub
-chmod 600 ~/.ssh/id_rsa.pub
+printf '%s\n' "$INPUT_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+chmod 600 ~/.ssh/id_ed25519
+printf '%s\n' "$INPUT_SSH_PUBLIC_KEY" > ~/.ssh/id_ed25519.pub
+chmod 600 ~/.ssh/id_ed25519.pub
 #chmod 600 "~/.ssh"
 eval $(ssh-agent)
-ssh-add ~/.ssh/id_rsa
+echo "$INPUT_KEY_PASS" | SSH_ASKPASS=/bin/cat setsid -w ssh-add ~/.ssh/id_ed25519
 
 
 echo "Add known hosts"

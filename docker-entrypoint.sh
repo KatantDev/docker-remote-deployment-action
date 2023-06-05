@@ -55,6 +55,7 @@ printf '%s\n' "$INPUT_SSH_PUBLIC_KEY" > ~/.ssh/id_ed25519.pub
 chmod 600 ~/.ssh/id_ed25519.pub
 #chmod 600 "~/.ssh"
 eval $(ssh-agent)
+echo ~/.ssh/id_ed25519.pub
 
 expect << EOF
   spawn ssh-add $(pwd)/.ssh/id_ed25519

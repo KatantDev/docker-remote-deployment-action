@@ -1,4 +1,4 @@
-FROM docker:stable
+FROM docker:latest
 
 RUN apk --no-cache add openssh-client docker-compose expect
 

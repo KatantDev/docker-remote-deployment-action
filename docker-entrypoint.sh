@@ -55,8 +55,13 @@ printf '%s\n' "$INPUT_SSH_PUBLIC_KEY" > ~/.ssh/id_ed25519.pub
 chmod 600 ~/.ssh/id_ed25519.pub
 #chmod 600 "~/.ssh"
 eval $(ssh-agent)
-echo "$INPUT_KEY_PASS" | SSH_ASKPASS=/bin/cat setsid -w ssh-add ~/.ssh/id_ed25519
 
+expect << EOF
+  spawn ssh-add $(pwd)/.ssh/id_ed25519
+  expect "Enter passphrase"
+  send "$INPUT_KEY_PASS\r"
+  expect eof
+EOF
 
 echo "Add known hosts"
 ssh-keyscan -p $INPUT_SSH_PORT "$SSH_HOST" >> ~/.ssh/known_hosts

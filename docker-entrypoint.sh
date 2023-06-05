@@ -59,10 +59,18 @@ path=~/.ssh/id_ed25519
 echo "$path"
 
 expect << EOF
+  set timeout 3
   spawn ssh-add "$path"
-  expect "Enter passphrase"
-  send "$INPUT_KEY_PASS\r"
-  expect eof
+  expect {
+    "Enter passphrase" {
+      send "$INPUT_KEY_PASS\r"
+      expect eof
+    }
+    timeout {
+      puts "Timed out waiting for 'Enter passphrase'. Continuing."
+      expect eof
+    }
+  }
 EOF
 
 echo "Add known hosts"

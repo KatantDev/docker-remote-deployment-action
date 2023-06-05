@@ -11,6 +11,9 @@ inputs:
   ssh_private_key:
     description: SSH private key used to connect to the docker host
     required: true
+  key_pass:
+    description: Key passphrase
+    required: false
   args:
     description: Deployment command args.
     required: true

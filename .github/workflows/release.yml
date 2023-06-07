@@ -32,5 +32,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            strwatcher/docker-remote-deployment-action:latest
-            strwatcher/docker-remote-deployment-action:${{ github.event.release.tag_name }}
+            katantdev/docker-remote-deployment-action:latest
+            katantdev/docker-remote-deployment-action:${{ github.event.release.tag_name }}

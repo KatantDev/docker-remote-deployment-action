@@ -35,10 +35,8 @@ inputs:
 
 runs:
   using: docker
-  image: docker://katantdev/docker-remote-deployment-action:latest
-
+  image: docker://strwatcher/docker-remote-deployment-action:latest
 
 branding:
   icon: send
   color: green
-

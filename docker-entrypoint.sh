@@ -95,5 +95,5 @@ ${DEPLOYMENT_COMMAND} ${DEPLOYMENT_COMMAND_OPTIONS} build
 echo "Command: ${DEPLOYMENT_COMMAND} ${INPUT_ARGS}"
 ${DEPLOYMENT_COMMAND} ${DEPLOYMENT_COMMAND_OPTIONS} ${INPUT_ARGS}
 
-docker context rm staging
+docker context rm -f staging
 

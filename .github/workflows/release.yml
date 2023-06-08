@@ -7,7 +7,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -35,6 +34,3 @@ jobs:
           tags: |
             katantdev/docker-remote-deployment-action:latest
             katantdev/docker-remote-deployment-action:${{ github.event.release.tag_name }}
-
-
-
